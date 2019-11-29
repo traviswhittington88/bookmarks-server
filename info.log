@@ -1,0 +1,18 @@
+{"message":"Unauthorized request to path /bookmarks","level":"error"}
+{"message":"Bookmark with id 9c0e260f-3a79-485e-aad6-14307c3038e4 created","level":"info"}
+{"message":"Bookmark with id dbd51df6-3647-42d8-9f26-96fa8173b250 created","level":"info"}
+{"message":"Bookmark with id 7add7cfb-1be6-4364-8edf-715a77f500d5 created","level":"info"}
+{"message":"Bookmark with id 79e4ec0f-284d-41f0-8dc7-761fb4375466 created","level":"info"}
+{"message":"Bookmark with id 79e4ec0f-284d-41f0-8dc7-761fb4375466 deleted","level":"info"}
+{"message":"A bookmark with id 79e4ec0f-284d-41f0-8dc7-761fb4375466 does not exist","level":"error"}
+{"message":"Bookmark with id aeeac355-1be4-46e7-9372-19dcfddda295 created","level":"info"}
+{"message":"Bookmark with id c3f679a1-1555-4e16-bb99-d097650fd5e5 created","level":"info"}
+{"message":"A bookmark with id aeeac355-1be4-46e7-9372-19dcfddda295 does not exist","level":"error"}
+{"message":"A bookmark with id aeeac355-1be4-46e7-9372-19dcfddda295 does not exist","level":"error"}
+{"message":"A bookmark with id aeeac355-1be4-46e7-9372-19dcfddda295 does not exist","level":"error"}
+{"message":"A bookmark with id aeeac355-1be4-46e7-9372-19dcfddda295 does not exist","level":"error"}
+{"message":"Bookmark with id 41e019e2-2580-49f8-94a8-b1c6caa4131c created","level":"info"}
+{"message":"Bookmark with id 41e019e2-2580-49f8-94a8-b1c6caa4131c deleted","level":"info"}
+{"message":"A bookmark with id 41e019e2-2580-49f8-94a8-b1c6caa4131c does not exist","level":"error"}
+{"message":"Bookmark with id 558d811e-f8a2-4972-9131-1ad0076802fe created","level":"info"}
+{"message":"Unauthorized request to path /","level":"error"}
