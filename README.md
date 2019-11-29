@@ -8,7 +8,7 @@ The request handlers implement knex instances to communicate with the local and 
 Authorization is handled via middleware, as is error handling. 
 
 
-##Testing CRUD methods
+## Testing CRUD methods
 
 Integration testing is performed using the Mocha test structure with the Chai assertion library and Supertest. A separate test database (bookmarks-test) was created through PSQL and data migrated from the local DB using Postgrator-cli migration tool. 
 
