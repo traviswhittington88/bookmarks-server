@@ -4,7 +4,8 @@ const express = require('express')
 const cors = require('cors')
 const helmet = require('helmet')
 const { NODE_ENV } = require('./config')
-const bookmarkRouter = require('./bookmarks/bookmark-router')
+const bookmarksRouter = require('./bookmarks/bookmarks-router')
+
 
 const app = express();
 
@@ -14,7 +15,7 @@ app.use(express.json());
 
 // add authorization middleware function that validates
 // an authorization header with an API_TOKEN was present
-app.use(function validateBearerToken(req, res, next) {
+/*app.use(function validateBearerToken(req, res, next) {
     const apiToken = process.env.API_TOKEN;
     const authToken = req.get('Authorization');
 
@@ -24,9 +25,9 @@ app.use(function validateBearerToken(req, res, next) {
     }
     //move to next middleware
     next();
-})
+}) */
 
-app.use(bookmarkRouter)
+app.use('/bookmarks', bookmarksRouter)
 
 app.use(function errorHandler(error, req, res, next) {   
     let response

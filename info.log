@@ -16,3 +16,5 @@
 {"message":"A bookmark with id 41e019e2-2580-49f8-94a8-b1c6caa4131c does not exist","level":"error"}
 {"message":"Bookmark with id 558d811e-f8a2-4972-9131-1ad0076802fe created","level":"info"}
 {"message":"Unauthorized request to path /","level":"error"}
+{"message":"Unauthorized request to path /","level":"error"}
+{"message":"Unauthorized request to path /","level":"error"}
