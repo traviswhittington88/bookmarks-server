@@ -1,6 +1,7 @@
 const express = require('express')
 const xss = require('xss')
 const BookmarksService = require('./bookmarks-service')
+const logger = require('../logger')
 
 const bookmarksRouter = express.Router()
 const jsonParser = express.json()
@@ -29,19 +30,25 @@ bookmarksRouter
          const { title, url, description, rating } = req.body
          const newBookmark = { title, url, description, rating }
 
-         let ratingInt = parseInt(rating)
 
-         if (ratingInt < 1 || ratingInt > 5) {
-            return res.status(400).json({ error: { message: `Rating must be a number between 1 and 5`} })
-         }
+        for (const [key, value] of Object.entries(newBookmark)) {
+            if (value == null) {
+                return res.status(400).json({
+                    error: { message: `Missing '${key}' in request body` }
+                })
+            }
+        }
 
-         for (const [key, value] of Object.entries(newBookmark)) {
-             if (value == null) {
-                 return res.status(400).json({
-                     error: { message: `Missing '${key}' in request body` }
-                 })
-             }
-         }
+        const ratingInt = parseInt(rating) // or Number(rating)
+
+        if(Number.isNaN(ratingInt) || ratingInt < 1 || ratingInt > 5) {
+            logger.error(`Invalid rating '${rating}' supplied`)
+            return res.status(400).json({
+                error: { message: `'rating' must be a number between 1 and 5` }
+            })
+        }
+
+
          BookmarksService.insertBookmark(
              req.app.get('db'),
              newBookmark

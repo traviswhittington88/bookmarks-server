@@ -102,13 +102,13 @@ describe(`Bookmarks Endpoints`, function() {
                     title: 'test bookmark',
                     url: 'test url',
                     description: 'test description',
-                    rating: -1,
+                    rating: 'invalid',
                 }
 
                 return supertest(app)
                 .post('/bookmarks')
                 .send(newBookmark)
-                .expect(400, { error: { message: `Rating must be a number between 1 and 5`} })
+                .expect(400, { error: { message: `'rating' must be a number between 1 and 5`} })
             })
         
 
