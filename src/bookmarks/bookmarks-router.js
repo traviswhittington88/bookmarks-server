@@ -1,12 +1,13 @@
 const express = require('express')
 const xss = require('xss')
+const path = require('path')
 const BookmarksService = require('./bookmarks-service')
 const logger = require('../logger')
 
 const bookmarksRouter = express.Router()
 const jsonParser = express.json()
 
-const serializeBookmark = bookmark => ({
+const serializeBookmark = bookmark => ({  
     id: bookmark.id,
     title: xss(bookmark.title),
     url: bookmark.url,
@@ -42,7 +43,7 @@ bookmarksRouter
         const ratingInt = parseInt(rating) // or Number(rating)
 
         if(Number.isNaN(ratingInt) || ratingInt < 1 || ratingInt > 5) {
-            logger.error(`Invalid rating '${rating}' supplied`)
+            logger.error(`Invalid rating '${ rating }' supplied`)
             return res.status(400).json({
                 error: { message: `'rating' must be a number between 1 and 5` }
             })
@@ -55,7 +56,7 @@ bookmarksRouter
              )
                  .then(bookmark => {
                      res.status(201)
-                         .location(`/bookmarks/${bookmark.id}`)
+                         .location(path.posix.join(req.originalUrl + `/${bookmark.id}`))
                          .json(serializeBookmark(bookmark))
             })
             .catch(next)
@@ -92,5 +93,29 @@ bookmarksRouter
         })
         .catch(next)
     })
+    .patch((req, res, next) => {
+        const { title, description, url } = req.body
+        const bookmarkToUpdate = { title, description, url }
+
+        const numOfValues = Object.values(bookmarkToUpdate).filter(Boolean).length
+
+        if(numOfValues === 0) {
+            res.status(400).json({
+                error: {
+                    message: `Request body must contain either 'title', 'url' or 'description'`
+                }
+            })
+        }
+        BookmarksService.updateBookmark(
+            req.app.get('db'),
+            req.params.bookmark_id,
+            bookmarkToUpdate
+        )
+            .then(numRowsAffected => {
+                res.status(204).end()
+            })
+            .catch(next)
+    })
 
 module.exports = bookmarksRouter
+
